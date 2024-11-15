@@ -1,9 +1,12 @@
 import {useMemo} from 'react';
 import {Animated} from 'react-native';
+
 import useScalingMetrics from '@hooks/useScalingMetrics';
 import {useThemeColors} from '@theme/index';
 
-export const createThemedStyles = (styleFunction: ThemedStyleFunction) => {
+export const createThemedStyles = <T extends NamedStyles<T> | NamedStyles<any>>(
+  styleFunction: ThemedStyleFunction<T>,
+) => {
   return (
     scale?: Animated.Value,
     value?: Animated.Value,

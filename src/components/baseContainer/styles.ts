@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+
 import {createThemedStyles} from '@helpers';
 import {layout} from '@theme';
 

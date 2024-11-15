@@ -7,44 +7,51 @@ import useScalingMetrics from '@hooks/useScalingMetrics';
 
 import {splashStyles} from './styles';
 
+const animate = (
+  value: Animated.Value,
+  scale: Animated.Value,
+  translateY: Animated.Value,
+  fadeAnim: Animated.Value,
+  toScale: number,
+  toTranslate: number,
+) => {
+  Animated.timing(value, {
+    toValue: 4,
+    duration: 2000,
+    useNativeDriver: true,
+  }).start();
+
+  Animated.timing(scale, {
+    toValue: toScale,
+    duration: 2000,
+    useNativeDriver: true,
+  }).start();
+
+  setTimeout(() => {
+    Animated.timing(translateY, {
+      toValue: toTranslate,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, 2000);
+};
+
 const SplashScreen = () => {
   const value = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(0)).current;
-  const fadeAnim = useRef(new Animated.Value(0)).current; // To control fade-in of the title
+  const fadeAnim = useRef(new Animated.Value(0)).current; 
   const translateY = useRef(new Animated.Value(0)).current;
   const styles = splashStyles(scale, value, translateY, fadeAnim);
   const {scaleSize} = useScalingMetrics();
 
-  const animate = () => {
-    Animated.timing(value, {
-      toValue: 4,
-      duration: 2000,
-      useNativeDriver: true,
-    }).start();
-
-    Animated.timing(scale, {
-      toValue: scaleSize(1.3),
-      duration: 2000,
-      useNativeDriver: true,
-    }).start();
-
-    setTimeout(() => {
-      Animated.timing(translateY, {
-        toValue: scaleSize(-40),
-        duration: 1000,
-        useNativeDriver: true,
-      }).start();
-
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 1000,
-        useNativeDriver: true,
-      }).start();
-    }, 2000);
-  };
-
   useEffect(() => {
-    animate();
+    animate(value, scale, translateY, fadeAnim, scaleSize(1.3), scaleSize(-40));
   }, []);
 
   return (

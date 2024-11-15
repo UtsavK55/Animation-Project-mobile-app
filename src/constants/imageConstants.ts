@@ -10,5 +10,5 @@ export const IMAGES = {
   prioritize: require('@assets/prioritize.png'),
   target: require('@assets/target.png'),
   tasks: require('@assets/tasks.png'),
-  toDoList: require('@assets/to-do-list.png'),
+  todoList: require('@assets/to-do-list.png'),
 };

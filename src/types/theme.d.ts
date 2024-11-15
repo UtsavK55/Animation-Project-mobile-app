@@ -35,11 +35,13 @@ type ScalingMetrics = {
   isLandscape: () => boolean;
 };
 
-type ThemedStyleFunction = (
+type NamedStyles<T> = {[P in keyof T]: ViewStyle | TextStyle | ImageStyle};
+
+type ThemedStyleFunction<T> = (
   themeColors: Colors,
   scalingMetrics: ScalingMetrics,
   scale?: Animated.Value,
   value?: Animated.Value,
   translateY?: Animated.Value,
   fadeAnim?: Animated.Value,
-) => Record<string, any>;
+) => T;

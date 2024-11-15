@@ -1,4 +1,5 @@
 import {View} from 'react-native';
+
 import {baseContainerStyles} from './styles';
 
 const BaseContainer = ({children}: {children: React.ReactNode}) => {
