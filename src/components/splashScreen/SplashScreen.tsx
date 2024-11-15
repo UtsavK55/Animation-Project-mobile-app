@@ -3,6 +3,7 @@ import {Animated, View} from 'react-native';
 
 import BaseContainer from '@components/baseContainer';
 import {IMAGES} from '@constants/imageConstants';
+import useScalingMetrics from '@hooks/useScalingMetrics';
 
 import {splashStyles} from './styles';
 
@@ -12,6 +13,7 @@ const SplashScreen = () => {
   const fadeAnim = useRef(new Animated.Value(0)).current; // To control fade-in of the title
   const translateY = useRef(new Animated.Value(0)).current;
   const styles = splashStyles(scale, value, translateY, fadeAnim);
+  const {scaleSize} = useScalingMetrics();
 
   const animate = () => {
     Animated.timing(value, {
@@ -21,14 +23,14 @@ const SplashScreen = () => {
     }).start();
 
     Animated.timing(scale, {
-      toValue: 1.3,
+      toValue: scaleSize(1.3),
       duration: 2000,
       useNativeDriver: true,
     }).start();
 
     setTimeout(() => {
       Animated.timing(translateY, {
-        toValue: -40,
+        toValue: scaleSize(-40),
         duration: 1000,
         useNativeDriver: true,
       }).start();
