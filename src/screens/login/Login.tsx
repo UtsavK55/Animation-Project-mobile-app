@@ -91,11 +91,11 @@ const Login = () => {
   const navigation = useNavigation<StackNavigationType>();
 
   const circles = useCircles(scaleSize);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isLoginViewVisible, setIsLoginViewVisible] = useState(false);
   const slideAnim = useRef(new Animated.Value(hp(40))).current;
 
   const handleLoginPress = () => {
-    setIsVisible(true);
+    setIsLoginViewVisible(true);
     Animated.timing(slideAnim, {
       toValue: 0,
       duration: 100,
@@ -108,7 +108,7 @@ const Login = () => {
       toValue: hp(40),
       duration: 100,
       useNativeDriver: true,
-    }).start(() => setIsVisible(false));
+    }).start(() => setIsLoginViewVisible(false));
   };
 
   // PanResponder for drag-to-close functionality
@@ -172,7 +172,7 @@ const Login = () => {
         </TouchableOpacity>
       </View>
 
-      {isVisible && (
+      {isLoginViewVisible && (
         <Animated.View
           style={[styles.formContainer, {transform: [{translateY: slideAnim}]}]}
           {...panResponder.panHandlers}>
@@ -190,7 +190,7 @@ const Login = () => {
           ))}
           <Button
             mode="contained"
-            style={{marginTop: 24}}
+            style={styles.submit}
             textColor={colors.white}
             buttonColor={colors.blue700}
             onPress={onPressSubmit}>
