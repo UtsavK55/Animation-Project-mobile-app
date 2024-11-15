@@ -10,5 +10,15 @@ export const IMAGES = {
   prioritize: require('@assets/prioritize.png'),
   target: require('@assets/target.png'),
   tasks: require('@assets/tasks.png'),
-  todoList: require('@assets/to-do-list.png'),
+  todoList: require('@assets/todoList.png'),
 };
+
+export const imageArray = [
+  IMAGES.check,
+  IMAGES.checklist,
+  IMAGES.paper,
+  IMAGES.prioritize,
+  IMAGES.target,
+  IMAGES.tasks,
+  IMAGES.todoList,
+];
