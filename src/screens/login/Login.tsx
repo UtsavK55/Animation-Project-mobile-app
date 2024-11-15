@@ -7,9 +7,11 @@ import {
   View,
   PanResponder,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {Button, TextInput} from 'react-native-paper';
 
 import AnimatedCircle from '@components/animatedCircle';
+import {ROUTES} from '@constants';
 import {imageArray, IMAGES} from '@constants/imageConstants';
 import useScalingMetrics from '@hooks/useScalingMetrics';
 import {useThemeColors} from '@theme';
@@ -86,6 +88,7 @@ const Login = () => {
   const styles = loginStyles();
   const {hp, scaleSize} = useScalingMetrics();
   const colors = useThemeColors();
+  const navigation = useNavigation<StackNavigationType>();
 
   const circles = useCircles(scaleSize);
   const [isVisible, setIsVisible] = useState(false);
@@ -127,8 +130,12 @@ const Login = () => {
     },
   });
 
+  const onPressSubmit = () => {
+    navigation.navigate(ROUTES.HOME);
+  };
+
   const inputs = [{label: 'Email'}, {label: 'Password'}];
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -186,7 +193,7 @@ const Login = () => {
             style={{marginTop: 24}}
             textColor={colors.white}
             buttonColor={colors.blue700}
-            onPress={() => console.log('Pressed')}>
+            onPress={onPressSubmit}>
             Submit
           </Button>
         </Animated.View>
